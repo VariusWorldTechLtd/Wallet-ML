@@ -10,9 +10,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 In each folder where coding is required there should be a requirements file present.
 
-'''
+```
 pip install -r requirements.txt
-'''
+```
 
 ## Development
 
