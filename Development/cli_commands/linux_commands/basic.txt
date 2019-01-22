@@ -1,0 +1,11 @@
+# Create file
+echo "This is some text" > randomtext.txt
+
+# Create directory
+mkdir [Directory name]
+
+# List files in directory
+ls
+
+# Display contents of files
+cat filename

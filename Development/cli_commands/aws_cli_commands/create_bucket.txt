@@ -1,0 +1,1 @@
+aws s3api create-bucket --acl private --bucket <bucket_name> --create-bucket-configuration LocationConstraint=<region>
