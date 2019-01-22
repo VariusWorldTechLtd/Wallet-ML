@@ -16,7 +16,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 Below shows a technical diagram of what the operational network will look like when deployed
 
-![ML Framework](ML - Framework.jpg)
+![ML Framework](ML-Framework.jpg)
 
 ## Built With
 
