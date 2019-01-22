@@ -1,0 +1,53 @@
+service:
+  name: vwt_ml-aws-lambda
+
+plugins:
+  - serverless-python-requirements
+
+provider:
+  name: aws
+  runtime: python3.6
+  region: eu-central-1
+  stage: dev
+  iamRoleStatements:
+    -  Effect: Allow
+       Action:
+         - s3:PutObject
+         - s3:GetObject
+       Resource:
+           - "arn:aws:s3:::${self:provider.deploymentBucket}/*"
+
+  ## TODO: Edit this to setup your deployment bucket
+  deploymentBucket:
+    name: ep.dev.projects
+
+package:
+  exclude:
+    - '**/*'
+  include:
+    - 'categorizer_lambda/**'
+
+custom:
+  pythonRequirements:
+    dockerizePip: true # set to false if `serverless deploy` is run inside a docker container
+    fileName: Pipfile
+    slim: true
+    dockerFile: Dockerfile
+  git-repo: https://github.com/bweigel/ml_at_awslambda_pydatabln2018
+
+functions:
+  categorizer_lambda:
+    name: categorizer_lambda
+    description: >
+      categorize texts into spam or ham using a naive Bayes classifier
+    handler: categorizer_lambda.main.lambda_handler
+    events:
+      - http:
+          path: spamorham
+          method: POST
+    environment:
+      MODEL_BUCKET: ${self:provider.deploymentBucket}
+      ## TODO: Edit these environmental variables to tell your code where the model is deployed (see ./categorizer_lambda/main.py)
+      MODEL_VECTORIZER_PATH: pydatabln2018/tfidf_vectorizer.pkl
+      MODEL_CLASSIFIER_PATH: pydatabln2018/naive_bayes_clf.pkl
+

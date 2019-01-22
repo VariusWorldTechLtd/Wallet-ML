@@ -6,6 +6,14 @@ Here is the repository that contains all materials for the ML systems attached t
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+- Download Python 3.6
+
+In each folder where coding is required there should be a requirements file present.
+
+'''
+pip install -r requirements.txt
+'''
+
 ## Development
 
 Provides the material for all development of the core Machine Learning systems underlying the service. The folder is sub-divided into the seperate development stages of the service. They include help files or cheat sheets to benefit the developer and without needed resarch.
