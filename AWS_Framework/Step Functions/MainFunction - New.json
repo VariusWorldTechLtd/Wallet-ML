@@ -1,0 +1,21 @@
+{
+    "Comment": "First draft of VWT-ML step function.",
+    "StartAt": "CreateTrainingJob",
+    "States": {
+      "CreateTrainingJob": {
+        "Type": "Task",
+        "Resource": "arn:aws:sagemaker:eu-west-1:386431343404:training-job/vwt_training_job_test-001",
+        "Next": "CreateLabelingJob"
+        },
+      "CreateLabelingJob": {
+       "Type": "Task",
+       "Resource": "arn:aws:states:::sagemaker:CreateLabelingJob.sync",
+       "Next": "CreateHyperParameterTuningJob"
+        },
+      "CreateHyperParameterTuningJob": {
+       "Type": "Task",
+       "Resource": "",
+       "End": true
+      }
+    }
+}

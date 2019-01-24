@@ -1,0 +1,63 @@
+{
+   "AlgorithmSpecification": { 
+      "AlgorithmName": "vwt_random_forest_test.001",
+      "MetricDefinitions": [ 
+         { 
+            "Name": "string",
+            "Regex": "string"
+         }
+      ],
+      "TrainingImage": "string",
+      "TrainingInputMode": "string"
+   },
+   "EnableInterContainerTrafficEncryption": 1,
+   "EnableNetworkIsolation": 1,
+   "HyperParameters": { 
+      "no_trees" : "10" 
+   },
+   "InputDataConfig": [ 
+      { 
+         "ChannelName": "string",
+         "CompressionType": "None",
+         "ContentType": "text/csv",
+         "DataSource": { 
+            "S3DataSource": { 
+               "AttributeNames": [ "string" ],
+               "S3DataDistributionType": "string",
+               "S3DataType": "S3Prefix",
+               "S3Uri": "s3://vwt-data-bucket-test-001/TransformJobDataInput.txt"
+            }
+         },
+         "InputMode": "string",
+         "RecordWrapperType": "string",
+         "ShuffleConfig": { 
+            "Seed": 5
+         }
+      }
+   ],
+   "OutputDataConfig": { 
+      "KmsKeyId": "string",
+      "S3OutputPath": "s3://vwt-model-bucket-test-001/"
+   },
+   "ResourceConfig": { 
+      "InstanceCount": 1,
+      "InstanceType": "ml.m4.xlarge",
+      "VolumeKmsKeyId": "string",
+      "VolumeSizeInGB": 5
+   },
+   "RoleArn": "vwt_role_test.001",
+   "StoppingCondition": { 
+      "MaxRuntimeInSeconds": 1000
+   },
+   "Tags": [ 
+      { 
+         "Key": "string",
+         "Value": "string"
+      }
+   ],
+   "TrainingJobName": "vwt_retrain_test.001",
+   "VpcConfig": { 
+      "SecurityGroupIds": [ "arn:aws:iam::386431343404:role/service-role/AmazonSageMaker-ExecutionRole-20181217T160105" ],
+      "Subnets": [ "string" ]
+   }
+}

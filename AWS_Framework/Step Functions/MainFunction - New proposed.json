@@ -1,0 +1,248 @@
+{
+    "Sagemaker CreateLabelingJob": {
+      "Type": "Task",
+      "Resource": "",
+      "Parameters": {
+        "HumanTaskConfig": { 
+            "AnnotationConsolidationConfig": { 
+               "AnnotationConsolidationLambdaArn": "string"
+            },
+            "MaxConcurrentTaskCount": number,
+            "NumberOfHumanWorkersPerDataObject": number,
+            "PreHumanTaskLambdaArn": "string",
+            "PublicWorkforceTaskPrice": { 
+               "AmountInUsd": { 
+                  "Cents": number,
+                  "Dollars": number,
+                  "TenthFractionsOfACent": number
+               }
+            },
+            "TaskAvailabilityLifetimeInSeconds": number,
+            "TaskDescription": "string",
+            "TaskKeywords": [ "string" ],
+            "TaskTimeLimitInSeconds": number,
+            "TaskTitle": "string",
+            "UiConfig": { 
+               "UiTemplateS3Uri": "string"
+            },
+            "WorkteamArn": "string"
+         },
+         "InputConfig": { 
+            "DataAttributes": { 
+               "ContentClassifiers": [ "string" ]
+            },
+            "DataSource": { 
+               "S3DataSource": { 
+                  "ManifestS3Uri": "string"
+               }
+            }
+         },
+         "LabelAttributeName": "string",
+         "LabelCategoryConfigS3Uri": "string",
+         "LabelingJobAlgorithmsConfig": { 
+            "InitialActiveLearningModelArn": "string",
+            "LabelingJobAlgorithmSpecificationArn": "string",
+            "LabelingJobResourceConfig": { 
+               "VolumeKmsKeyId": "string"
+            }
+         },
+         "LabelingJobName": "string",
+         "OutputConfig": { 
+            "KmsKeyId": "string",
+            "S3OutputPath": "string"
+         },
+         "RoleArn": "string",
+         "StoppingConditions": { 
+            "MaxHumanLabeledObjectCount": number,
+            "MaxPercentageOfInputDatasetLabeled": number
+         },
+         "Tags": [ 
+            { 
+               "Key": "string",
+               "Value": "string"
+            }
+         ]
+      },
+      "Next": "SageMaker CreateTrainingJob"
+    },
+    "SageMaker CreateTrainingJob": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sagemaker:createTransformJob.sync",
+      "Parameters": {
+        "AlgorithmSpecification": { 
+            "AlgorithmName": "vwt_random_forest_test.001",
+            "MetricDefinitions": [ 
+               { 
+                  "Name": "string",
+                  "Regex": "string"
+               }
+            ],
+            "TrainingImage": "string",
+            "TrainingInputMode": "string"
+         },
+         "EnableInterContainerTrafficEncryption": 1,
+         "EnableNetworkIsolation": 1,
+         "HyperParameters": { 
+            "no_trees" : "10" 
+         },
+         "InputDataConfig": [ 
+            { 
+               "ChannelName": "string",
+               "CompressionType": "None",
+               "ContentType": "text/csv",
+               "DataSource": { 
+                  "S3DataSource": { 
+                     "AttributeNames": [ "string" ],
+                     "S3DataDistributionType": "string",
+                     "S3DataType": "S3Prefix",
+                     "S3Uri": "s3://vwt-data-bucket-test-001/TransformJobDataInput.txt"
+                  }
+               },
+               "InputMode": "string",
+               "RecordWrapperType": "string",
+               "ShuffleConfig": { 
+                  "Seed": 5
+               }
+            }
+         ],
+         "OutputDataConfig": { 
+            "KmsKeyId": "string",
+            "S3OutputPath": "s3://vwt-model-bucket-test-001/"
+         },
+         "ResourceConfig": { 
+            "InstanceCount": 1,
+            "InstanceType": "ml.m4.xlarge",
+            "VolumeKmsKeyId": "string",
+            "VolumeSizeInGB": 5
+         },
+         "RoleArn": "vwt_role_test.001",
+         "StoppingCondition": { 
+            "MaxRuntimeInSeconds": 1000
+         },
+         "Tags": [ 
+            { 
+               "Key": "string",
+               "Value": "string"
+            }
+         ],
+         "TrainingJobName": "vwt_retrain_test.001",
+         "VpcConfig": { 
+            "SecurityGroupIds": [ "arn:aws:iam::386431343404:role/service-role/AmazonSageMaker-ExecutionRole-20181217T160105" ],
+            "Subnets": [ "string" ]
+         }
+        },
+        "Next": "SageMaker CreateHyperParameterTuningJob"
+    },
+    "SageMaker CreateHyperParameterTuningJob": {
+      "Type": "Task",
+      "Resource": "",
+      "Parameters": {
+        "HyperParameterTuningJobConfig": { 
+            "HyperParameterTuningJobObjective": { 
+               "MetricName": "string",
+               "Type": "string"
+            },
+            "ParameterRanges": { 
+               "CategoricalParameterRanges": [ 
+                  { 
+                     "Name": "string",
+                     "Values": [ "string" ]
+                  }
+               ],
+               "ContinuousParameterRanges": [ 
+                  { 
+                     "MaxValue": "string",
+                     "MinValue": "string",
+                     "Name": "string"
+                  }
+               ],
+               "IntegerParameterRanges": [ 
+                  { 
+                     "MaxValue": "string",
+                     "MinValue": "string",
+                     "Name": "string"
+                  }
+               ]
+            },
+            "ResourceLimits": { 
+               "MaxNumberOfTrainingJobs": number,
+               "MaxParallelTrainingJobs": number
+            },
+            "Strategy": "string",
+            "TrainingJobEarlyStoppingType": "string"
+         },
+         "HyperParameterTuningJobName": "string",
+         "Tags": [ 
+            { 
+               "Key": "string",
+               "Value": "string"
+            }
+         ],
+         "TrainingJobDefinition": { 
+            "AlgorithmSpecification": { 
+               "AlgorithmName": "string",
+               "MetricDefinitions": [ 
+                  { 
+                     "Name": "string",
+                     "Regex": "string"
+                  }
+               ],
+               "TrainingImage": "string",
+               "TrainingInputMode": "string"
+            },
+            "EnableInterContainerTrafficEncryption": boolean,
+            "EnableNetworkIsolation": boolean,
+            "InputDataConfig": [ 
+               { 
+                  "ChannelName": "string",
+                  "CompressionType": "string",
+                  "ContentType": "string",
+                  "DataSource": { 
+                     "S3DataSource": { 
+                        "AttributeNames": [ "string" ],
+                        "S3DataDistributionType": "string",
+                        "S3DataType": "string",
+                        "S3Uri": "string"
+                     }
+                  },
+                  "InputMode": "string",
+                  "RecordWrapperType": "string",
+                  "ShuffleConfig": { 
+                     "Seed": number
+                  }
+               }
+            ],
+            "OutputDataConfig": { 
+               "KmsKeyId": "string",
+               "S3OutputPath": "string"
+            },
+            "ResourceConfig": { 
+               "InstanceCount": number,
+               "InstanceType": "string",
+               "VolumeKmsKeyId": "string",
+               "VolumeSizeInGB": number
+            },
+            "RoleArn": "string",
+            "StaticHyperParameters": { 
+               "string" : "string" 
+            },
+            "StoppingCondition": { 
+               "MaxRuntimeInSeconds": number
+            },
+            "VpcConfig": { 
+               "SecurityGroupIds": [ "string" ],
+               "Subnets": [ "string" ]
+            }
+         },
+         "WarmStartConfig": { 
+            "ParentHyperParameterTuningJobs": [ 
+               { 
+                  "HyperParameterTuningJobName": "string"
+               }
+            ],
+            "WarmStartType": "string"
+         }  
+        },
+      "End": true
+    }
+}

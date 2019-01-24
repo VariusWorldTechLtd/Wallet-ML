@@ -1,0 +1,61 @@
+{
+    "HumanTaskConfig": { 
+       "AnnotationConsolidationConfig": { 
+          "AnnotationConsolidationLambdaArn": "string"
+       },
+       "MaxConcurrentTaskCount": number,
+       "NumberOfHumanWorkersPerDataObject": number,
+       "PreHumanTaskLambdaArn": "string",
+       "PublicWorkforceTaskPrice": { 
+          "AmountInUsd": { 
+             "Cents": number,
+             "Dollars": number,
+             "TenthFractionsOfACent": number
+          }
+       },
+       "TaskAvailabilityLifetimeInSeconds": number,
+       "TaskDescription": "string",
+       "TaskKeywords": [ "string" ],
+       "TaskTimeLimitInSeconds": number,
+       "TaskTitle": "string",
+       "UiConfig": { 
+          "UiTemplateS3Uri": "string"
+       },
+       "WorkteamArn": "string"
+    },
+    "InputConfig": { 
+       "DataAttributes": { 
+          "ContentClassifiers": [ "string" ]
+       },
+       "DataSource": { 
+          "S3DataSource": { 
+             "ManifestS3Uri": "string"
+          }
+       }
+    },
+    "LabelAttributeName": "string",
+    "LabelCategoryConfigS3Uri": "string",
+    "LabelingJobAlgorithmsConfig": { 
+       "InitialActiveLearningModelArn": "string",
+       "LabelingJobAlgorithmSpecificationArn": "string",
+       "LabelingJobResourceConfig": { 
+          "VolumeKmsKeyId": "string"
+       }
+    },
+    "LabelingJobName": "string",
+    "OutputConfig": { 
+       "KmsKeyId": "string",
+       "S3OutputPath": "string"
+    },
+    "RoleArn": "string",
+    "StoppingConditions": { 
+       "MaxHumanLabeledObjectCount": number,
+       "MaxPercentageOfInputDatasetLabeled": number
+    },
+    "Tags": [ 
+       { 
+          "Key": "string",
+          "Value": "string"
+       }
+    ]
+ }
