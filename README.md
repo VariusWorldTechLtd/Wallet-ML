@@ -14,9 +14,17 @@ In each folder where coding is required there should be a requirements file pres
 pip install -r requirements.txt
 ```
 
+## AWS Framework
+
+Below shows a technical diagram of what the operational network will look like when deployed
+
+![ML Framework](ML-Framework.jpg)
+
 ## Development
 
 Provides the material for all development of the core Machine Learning systems underlying the service. The folder is sub-divided into the seperate development stages of the service. They include help files or cheat sheets to benefit the developer and without needed resarch.
+
+### Data Collection
 
 ### Machine Learning Techniques
 
@@ -24,20 +32,14 @@ Files containing the different machine learning techniques that are tested again
 
 ### CLI Commands
 
-Provides a list of useful CLI commands needed for development. 
-
-## Deployment
-
-### AWS Architecture
-
-Below shows a technical diagram of what the operational network will look like when deployed
-
-![ML Framework](ML-Framework.jpg)
+Provides a list of useful CLI commands needed for development.
 
 ## Built With
 
 * [AWS](https://aws.amazon.com/) - The cloud interface used
 * [Serverless](https://serverless.com/) - Provided by AWS Lambda
+* [Python](https://www.python.org/) - Language used for machine learning code
+* [Jupyter](https://jupyter.org/) - Software used for presentable documentation
 
 ## Authors
 
