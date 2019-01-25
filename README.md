@@ -41,4 +41,4 @@ Below shows a technical diagram of what the operational network will look like w
 
 ## Authors
 
-* **Sam Peek** - *Initial work* - [supsam89](https://github.com/supsam89)
+* **Sam Peek** - *Creator* - [supsam89](https://github.com/supsam89)
