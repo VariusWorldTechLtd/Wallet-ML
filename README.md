@@ -26,6 +26,8 @@ Provides the material for all development of the core Machine Learning systems u
 
 ### Data Collection
 
+A Python library extension of Web3 is used to collect the data from the blockchain. This will both be saved and posted into AWS for the machine learning process. A folder in development is dedicated to coding the collection and storage.
+
 ### Machine Learning Techniques
 
 Files containing the different machine learning techniques that are tested against each other. Provides the samples that can be used once data is highly available.
