@@ -4,6 +4,8 @@ This folder relates to collecting the data initially from the blockchain to be s
 
 ## Getting Started
 
+Install the requirements.txt file.
+
 ```
-pip install web3
+pip install -r requirements.txt
 ```

@@ -14,6 +14,14 @@ In each folder where coding is required there should be a requirements file pres
 pip install -r requirements.txt
 ```
 
+It is recommended that virtual environments are used when practising the code in the examples. This avoids complication in installing unneeded dependencies.
+
+```
+python3 -m venv myenv
+
+source myenv/bin/activate
+```
+
 ## AWS Framework
 
 Below shows a technical diagram of what the operational network will look like when deployed
