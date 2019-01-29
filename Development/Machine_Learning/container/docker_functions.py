@@ -51,3 +51,23 @@ indices = [i+j for i,j in itertools.product(a,b)]
 test_data=shape.iloc[indices[:-1]]
 
 print(predictor.predict(test_data.values).decode('utf-8'))
+
+
+# Transform job (could be used for assessing gambling behaviour)
+transform_output_folder = "batch-transform-output"
+output_path="s3://{}/{}".format(sess.default_bucket(), transform_output_folder)
+
+transformer = tree.transformer(instance_count=1,
+                               instance_type='ml.m4.xlarge',
+                               output_path=output_path)
+
+
+transformer.transform(data_location, content_type='text/csv', split_type='Line')
+transformer.wait()
+
+# Read results from S3 files and print output
+s3_client = sess.boto_session.client('s3')
+s3_client.download_file(sess.default_bucket(), "{}/iris.csv.out".format(transform_output_folder), '/tmp/iris.csv.out')
+with open('/tmp/iris.csv.out') as f:
+    results = f.readlines()   
+print("Transform results: \n{}".format(''.join(results)))
