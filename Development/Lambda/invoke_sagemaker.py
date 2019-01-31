@@ -21,7 +21,7 @@ def lambda_handler(event, context):
     print(response)
     result = json.loads(response['Body'].read().decode())
     print(result)
-    pred = int(result['predictions'][0]['predicted_label'])
+    pred = int(result['predictions'][0]['score'])
     predicted_label = 'M' if pred == 1 else 'B'
     
     return predicted_label
