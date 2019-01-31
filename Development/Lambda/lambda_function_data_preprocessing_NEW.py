@@ -1,3 +1,12 @@
+from __future__ import print_function
+
+import base64
+
+print('Loading function')
+
+
+def lambda_handler(event, context):
+    output = []
 df.convert_objects(convert_numeric=True)
 df.fillna(0, inplace=True)
 
@@ -31,3 +40,7 @@ def handle_non_numerical_data(df):
     return df
 
 df = handle_non_numerical_data(df)
+
+    print('Successfully processed {} records.'.format(len(event['records'])))
+
+    return {'records': output}
