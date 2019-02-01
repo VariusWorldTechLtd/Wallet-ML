@@ -1,12 +1,14 @@
-from __future__ import print_function
+import os
+import io
+import boto3
+import json
+import csv
+import pandas as pd
 
-import base64
+print('Preprocessing data')
 
-print('Loading function')
+df = pd.read_json(event)
 
-
-def lambda_handler(event, context):
-    output = []
 df.convert_objects(convert_numeric=True)
 df.fillna(0, inplace=True)
 
@@ -40,7 +42,26 @@ def handle_non_numerical_data(df):
     return df
 
 df = handle_non_numerical_data(df)
+event = df.to_json(orient='index')
 
-    print('Successfully processed {} records.'.format(len(event['records'])))
+# grab environment variables
+ENDPOINT_NAME = os.environ['ENDPOINT_NAME']
+runtime= boto3.client('runtime.sagemaker')
 
-    return {'records': output}
+def lambda_handler(event, context):
+    print("Received event: " + json.dumps(event, indent=2))
+    
+    data = json.loads(json.dumps(event))
+    payload = data['data']
+    print(payload)
+    
+    response = runtime.invoke_endpoint(EndpointName=ENDPOINT_NAME,
+                                       ContentType='text/csv',
+                                       Body=payload)
+    print(response)
+    result = json.loads(response['Body'].read().decode())
+    print(result)
+    pred = int(result['predictions'][0]['score'])
+    predicted_label = 'M' if pred == 1 else 'B'
+    
+    return predicted_label
